@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function Verifica(){
+			var dni = document.getElementById("DNI").value
+			if ( dni == "") {
+				alert("Rellena el campo DNI");
+				return false;
+			}
+			else if (!/^[0-9]{8}[A-Z]$/i.test(dni)) {
+				alert("Formato incorrecto");
+				return false;
+			}
+			return true;
+		}
+		function Add_n(){
+			var array_palabras = ["En","un","lugar","de","la","Mancha","cuyo","nombre","no","quiero","acordarme"];
+			var lista = document.getElementById("lista");
+			for (var i = 0;i < document.getElementById("N").value;i++) {
+				var li = document.createElement("li");
+				var texto = document.createTextNode(array_palabras[Math.floor(Math.random() * (array_palabras.length))]);
+				li.appendChild(texto);
+  				lista.appendChild(li);
+			}
+			document.getElementById("Form").reset();
+		}
+/*
+		function Add_n() {
+			var array_palabras = ["En","un","lugar","de","la","Mancha","cuyo","nombre","no","quiero","acordarme"];
+			lista = $("ul[id = lista] li")
+			for( var i = 0; i < lista.length; i++){
+				lista[i].remove();
+			}
+			lista = document.getElementById("lista");
+			for (var i = 0;i < document.getElementById("N").value;i++) {
+				var li = document.createElement("li");
+				var texto = document.createTextNode(array_palabras[Math.floor(Math.random() * (array_palabras.length))]);
+				li.appendChild(texto);
+  				lista.appendChild(li);
+			}
+			document.getElementById("Form").reset();
+		}
+*/
+
+	</script>
+</head>
+<body>
+	<ul id=lista>
+	</ul>
+	<form action="form.html" onsubmit="return Verifica();">
+		<div><p>DNI: <input name="DNI" id="DNI"></p></div>
+		<div><p><input type="submit" name="ENVIAR"></p></div>
+	</form>
+	<form action="javascript:;" onsubmit="Add_n();" id="Form">
+		<div><p>numero: <input name="N" id="N"></p></div>
+		<div><p><input type="submit" name="ENVIAR_N"></p></div>
+	</form>
+	<a href="https://www.ull.es">ULL</a>
+	<a href="https://www.w3schools.com">w3schools</a>
+	<h1 class = "Nenlaces"></h1>
+	<script>$("h1[class=Nenlaces]").text( "Hay " + $( "a" ).length + " enlaces");</script>
+</body>
+</html>
